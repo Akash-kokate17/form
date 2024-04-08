@@ -54,7 +54,6 @@ export function Login(props) {
     }
   };
 
-
   // Function to toggle password visibility
   const togglePassword = () => {
     setPassType((prevType) => (prevType === "password" ? "text" : "password"));
@@ -78,6 +77,7 @@ export function Login(props) {
               name="userName"
               value={login.userName}
               onChange={handleInput}
+              autoComplete="username"
             />
             <div className="border-b w-48 h-1 bg-red-200 rounded-lg"></div>
             {error.userName && <p className="text-center text-red-500">Username is required</p>}
