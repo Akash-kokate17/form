@@ -30,24 +30,30 @@ export function Login(props) {
   // Function to handle user login and error validation
   const userPassHandler = (e) => {
     e.preventDefault(); // Prevent form submission
-
-    const signUpObj = JSON.parse(localStorage.getItem("loginInfo"));
-    const { userName, password } = login;
+    let signUpObj = window.localStorage.getItem("loginInfo");
+    let loginObj = JSON.parse(signUpObj);
 
     // Validate user credentials
-    if (userName.trim() === "") {
-      setErrors((prevErrors) => ({ ...prevErrors, userName: true }));
-    } else if (password.trim() === "") {
-      setErrors((prevErrors) => ({ ...prevErrors, password: true }));
-    } else if (
-      userName === signUpObj.userName &&
-      password === signUpObj.password
+    if (
+      login.userName === loginObj.userName &&
+      login.password === loginObj.password
     ) {
       navigate("/home");
     } else {
-      alert("Invalid username or password");
+      // Handle username and password errors
+      if (login.userName.trim() === "") {
+        setErrors((prevErrors) => ({ ...prevErrors, userName: true }));
+      } else if (login.userName !== loginObj.userName) {
+        alert("Username Not Found");
+      }
+      if (login.password.trim() === "") {
+        setErrors((prevErrors) => ({ ...prevErrors, password: true }));
+      } else if (login.password !== loginObj.password) {
+        alert("Password Not Match");
+      }
     }
   };
+
 
   // Function to toggle password visibility
   const togglePassword = () => {
