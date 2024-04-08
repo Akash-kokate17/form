@@ -21,7 +21,6 @@ export function Login(props) {
   const inputRef = useRef();
 
   // Navigation hook for sign-up page
-  let goToSignUpPage = useNavigate();
   let navigate = useNavigate();
 
   // State for user login details and errors
