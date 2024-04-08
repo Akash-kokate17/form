@@ -43,7 +43,8 @@ export function Login(props) {
   };
 
   // Function to handle user login and error validation
-  const userPassHandler = () => {
+  const userPassHandler = (e) => {
+    e.preventDefault(); // Prevent form submission
     let signUpObj = window.localStorage.getItem("loginInfo");
     let loginObj = JSON.parse(signUpObj);
 
@@ -80,7 +81,7 @@ export function Login(props) {
   };
 
   return (
-    <>
+    <form onSubmit={userPassHandler}>
       {/* Login form */}
       <div
         className="flex flex-wrap flex-col items-center w-full justify-center md:p-36 p-10"
@@ -97,9 +98,7 @@ export function Login(props) {
               className=" outline-none text-center mt-4 w-full font-bold"
               ref={inputRef}
               name="userName"
-              onChange={(e) => {
-                handleInput(e);
-              }}
+              onChange={handleInput}
             />
             <div className="border-b w-48 h-1 bg-red-200 rounded-lg"></div>
             {error.userName && (
@@ -114,9 +113,7 @@ export function Login(props) {
                 placeholder="Password"
                 name="password"
                 className=" outline-none text-center mt-10 w-full font-bold"
-                onChange={(e) => {
-                  handleInput(e);
-                }}
+                onChange={handleInput}
               />
               <span
                 className="cursor-pointer mt-12 me-1"
@@ -133,18 +130,17 @@ export function Login(props) {
           <div className="flex flex-row items-center mt-8">
             {/* Login and Sign-up buttons */}
             <button
+              type="submit"
               className="border-2 p-2 px-4 rounded-lg me-4 hover:bg-blue-600 hover:text-white"
-              onClick={userPassHandler}
             >
               Login
             </button>
-            <button
-              className="border-2 p-2 px-4 rounded-lg ms-1 hover:bg-red-600 hover:text-white"
-             
-            ><Link to="signup">signUp</Link></button>
+            <button className="border-2 p-2 px-4 rounded-lg ms-1 hover:bg-red-600 hover:text-white">
+              <Link to="signup">Sign Up</Link>
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </form>
   );
 }
