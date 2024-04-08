@@ -24,19 +24,28 @@ export function Login(props) {
 
   const userPassHandler = (e) => {
     e.preventDefault();
-    let signUpObj = window.localStorage.getItem("loginInfo");
-    let loginObj = JSON.parse(signUpObj);
 
-    if (login.userName === loginObj.userName && login.password === loginObj.password) {
-      navigate("/home");
-    } else {
-      if (login.userName.trim() === "") {
-        setErrors((prevErrors) => ({ ...prevErrors, userName: true }));
-      }
-      if (login.password.trim() === "") {
-        setErrors((prevErrors) => ({ ...prevErrors, password: true }));
-      }
-      if (login.userName !== loginObj.userName || login.password !== loginObj.password) {
+    // Check if login information exists in localStorage
+    let loginObj;
+    try {
+      loginObj = JSON.parse(window.localStorage.getItem("loginInfo"));
+    } catch (error) {
+      console.error(
+        "Error parsing login information from localStorage:",
+        error
+      );
+      loginObj = null;
+    }
+
+    if (loginObj) {
+      // Validate username and password
+      if (
+        login.userName === loginObj.userName &&
+        login.password === loginObj.password
+      ) {
+        navigate("/home");
+      } else {
+        setErrors({ userName: true, password: true }); // Set both errors
         alert("Invalid Username or Password");
       }
     }
@@ -49,7 +58,10 @@ export function Login(props) {
 
   return (
     <form onSubmit={userPassHandler}>
-      <div className="flex flex-wrap flex-col items-center w-full justify-center md:p-36 p-10" style={{ height: "100%" }}>
+      <div
+        className="flex flex-wrap flex-col items-center w-full justify-center md:p-36 p-10"
+        style={{ height: "100%" }}
+      >
         <div className="bg-white border-2 p-12 rounded-xl px-[100] md:px-[130px] flex flex-col flex-wrap items-center hover:border-purple-600">
           <div className="flex flex-col items-center">
             <img className="w-28 h-28" src={profilePic} alt="Profile" />
@@ -65,7 +77,9 @@ export function Login(props) {
               autoComplete="username"
             />
             <div className="border-b w-48 h-1 bg-red-200 rounded-lg"></div>
-            {error.userName && <p className="text-center text-red-500">Username is required</p>}
+            {error.userName && (
+              <p className="text-center text-red-500">Username is required</p>
+            )}
           </div>
           <div className="flex flex-col items-center">
             <p className="flex flex-row">
@@ -78,15 +92,23 @@ export function Login(props) {
                 onChange={handleInput}
                 autoComplete="current-password"
               />
-              <span className="cursor-pointer mt-12 me-1" onClick={togglePassword}>
+              <span
+                className="cursor-pointer mt-12 me-1"
+                onClick={togglePassword}
+              >
                 {show ? <FaEye /> : <FaEyeSlash />}
               </span>
             </p>
             <div className="border-b w-48 h-1 bg-red-200 rounded-lg"></div>
-            {error.password && <p className="text-center text-red-500">Password is required</p>}
+            {error.password && (
+              <p className="text-center text-red-500">Password is required</p>
+            )}
           </div>
           <div className="flex flex-row items-center mt-8">
-            <button type="submit" className="border-2 p-2 px-4 rounded-lg me-4 hover:bg-blue-600 hover:text-white">
+            <button
+              type="submit"
+              className="border-2 p-2 px-4 rounded-lg me-4 hover:bg-blue-600 hover:text-white"
+            >
               Login
             </button>
             <button className="border-2 p-2 px-4 rounded-lg ms-1 hover:bg-red-600 hover:text-white">
