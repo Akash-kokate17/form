@@ -314,10 +314,10 @@ export function SignUp(props) {
   return (
     <>
       <div
-        className="w-full  flex flex-col flex-wrap items-center justify-center p-10"
+        className="w-full flex flex-col flex-wrap items-center justify-center md:py-10 py-8"
         style={{ height: "100%" }}
       >
-        <div className=" w-[350px] border-2 flex flex-col flex-wrap items-center bg-white rounded-xl p-10 md:p-[70px] md:px-[80px]  hover:border-purple-600 md:w-[376px]">
+        <div className=" w-[350px] border-2 flex flex-col flex-wrap items-center justify-center bg-white rounded-xl p-10 md:p-[70px] md:px-[80px]  hover:border-purple-600 md:w-[376px]">
           <div>
             <input
               type="text"

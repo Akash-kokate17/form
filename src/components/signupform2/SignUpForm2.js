@@ -275,7 +275,7 @@ export function SignUpForm2(props) {
   return (
     <>
       <div
-        className="flex flex-wrap flex-col items-center w-full justify-center p-10"
+        className="flex flex-wrap flex-col items-center w-full justify-center md:py-10 py-8"
         style={{ height: "100%" }}
       >
         {" "}
