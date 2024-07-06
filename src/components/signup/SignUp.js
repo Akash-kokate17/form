@@ -298,7 +298,7 @@ export function SignUp(props) {
 
   // Function to navigate back to login page
   const navigateToLogin = () => {
-    navigateLogin("/login");
+    navigateLogin("/");
   };
 
   // Function to toggle password visibility

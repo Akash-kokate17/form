@@ -269,7 +269,7 @@ export function SignUpForm2(props) {
     setFormValid(isValid);
 
     if (isValid) {
-      goToLoginPage("/login");
+      goToLoginPage("/");
     }
   };
   return (
@@ -406,7 +406,7 @@ export function SignUpForm2(props) {
           </div>
           <div className="flex flex-row items-center mt-8">
             <button className="p-2 px-4 border-2 rounded-lg me-4 hover:bg-blue-600 hover:text-white">
-              <Link to="/login"> Back</Link>
+              <Link to="/"> Back</Link>
             </button>
             <button
               className="border-2 p-2 px-4 rounded-lg me-4 hover:bg-blue-600 hover:text-white"

@@ -44,6 +44,8 @@ export function Login(props) {
         login.password === loginObj.password
       ) {
         navigate("/home");
+      } else if (!login.userName || !login.password) {
+        alert("Both Filed Are Required");
       } else {
         setErrors({ userName: true, password: true }); // Set both errors
         alert("Invalid Username or Password");
@@ -105,15 +107,19 @@ export function Login(props) {
             )}
           </div>
           <div className="flex flex-row items-center mt-8">
-            <button
+          <div>
+          <button
               type="submit"
               className="border-2 p-2 px-4 rounded-lg me-4 hover:bg-blue-600 hover:text-white"
             >
               Login
             </button>
+          </div>
+            <div>
             <button className="border-2 p-2 px-4 rounded-lg ms-1 hover:bg-red-600 hover:text-white">
-              <Link to="signup">Sign Up</Link>
+              <Link to="/signup">Sign Up</Link>
             </button>
+            </div>
           </div>
         </div>
       </div>
